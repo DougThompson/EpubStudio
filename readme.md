@@ -1,6 +1,6 @@
 # EPUB Studio #
 
-**EPUB Studio** is a Python GUI application (using wxPython) designed to create or edit non-DRM EPUB volumes.  Think of it as a simplified [Calibre](http://calibre-ebook.com/) or [Sigil](http://code.google.com/p/sigil/) that focuses on simplicity.  This originally started as a C# .NET application to create EPUBs that I wrote to a) learn more about the EPUB format, and b) wrote because (at the time) there was not a good way of creating EPUBs from HTML files.
+**EPUB Studio** is a Python GUI application (using wxPython) designed to create or edit non-DRM EPUB volumes.  Think of it as a simplified [Calibre](http://calibre-ebook.com/) or [Sigil](http://code.google.com/p/sigil/) that focuses on simplicity.  This originally started as a C# .NET application to create EPUBs that I wrote to learn more about the EPUB format, and because (at the time) there was not a good way of creating EPUBs from HTML files.
 
 ## Development Requirements ##
 Cross-development using [Aptana Studio 3](http://www.aptana.com/) started on 32-bit Python 2.6.1 on both Mac OS X 10.6.6 and Windows 7 64-bit using wxPython 2.8.9 32-bit.
