@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+	<head>
+		<!--The following four metadata items are required for all
+			NCX documents, including those conforming to the relaxed
+			constraints of OPS 2.0-->
+		<meta name="dtb:uid" content="${book.identifier}"/>
+		<meta name="epub-creator" content="${book.creator}"/>
+		<meta name="dtb:depth" content="1"/>
+		<meta name="dtb:totalPageCount" content="0"/>
+		<meta name="dtb:maxPageNumber" content="0"/>
+	</head>
+	<docTitle>
+		<text>${book.title}</text>
+	</docTitle>
+	<docAuthor>
+		<text>${book.author}</text>
+	</docAuthor>
+	<navMap>
+		<navPoint id="navpoint-1" playOrder="1">
+			<navLabel>
+				<text>Title Page</text>
+			</navLabel>
+			<content src="titlepage.xml"/>
+		</navPoint>
+		% for i, chapter in enumerate(book.chapters):
+		% if chapter.level == 1:
+		<navPoint id="navpoint-${i+2}" playOrder="${i+2}">
+			<navLabel>
+			<%
+				name = chapter.name.replace('&', '&amp;')
+				if len(chapter.title) > 0:
+					name = name + " - " + chapter.title.replace('&', '&amp;')
+			%>
+				<text>${name}</text>
+			</navLabel>
+			<content src="${chapter.destPath}"/>
+				% for i, child in enumerate(chapter.children):
+				<navPoint id="navpoint-${i+2}" playOrder="${i+2}">
+					<navLabel>
+					<%
+						name = child.name.replace('&', '&amp;')
+						if len(child.title) > 0:
+							name = name + " - " + child.title.replace('&', '&amp;')
+					%>
+						<text>${name}</text>
+					</navLabel>
+					<content src="${child.destPath}"/>
+					% for i, grandchild in enumerate(child.children):
+					<navPoint id="navpoint-${i+2}" playOrder="${i+2}">
+						<navLabel>
+						<%
+							name = grandchild.name.replace('&', '&amp;')
+							if len(grandchild.title) > 0:
+								name = name + " - " + grandchild.title.replace('&', '&amp;')
+						%>
+							<text>${name}</text>
+						</navLabel>
+						<content src="${grandchild.destPath}"/>
+					</navPoint>
+					% endfor
+				</navPoint>
+				% endfor
+		</navPoint>
+		% endif
+		% endfor
+	</navMap>
+</ncx>

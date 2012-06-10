@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>${title}</title>
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+</head>
+<body>
+<div class="title_box"><div class="chapnum">${chapter.name.replace('&', '&amp;')}</div><div class="chaptitle">${chapter.title.replace('&', '&amp;')}</div><hr/></div>
+% if len(chapter.text) == 0:
+<ul>
+% for i, child in enumerate(chapter.children):
+	<%
+		name = child.name.replace('&', '&amp;').split(':')[-1].strip()
+		if len(child.title) > 0:
+			name = name + " - " + child.title.replace('&', '&amp;')
+	%>
+	<li><a href="${child.destPath}">${name}</a></li>
+% endfor
+</ul>
+% else:
+% for i, p in enumerate(chapter.text):
+${p}
+% endfor
+% endif
+</body></html>
