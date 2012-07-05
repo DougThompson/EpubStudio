@@ -186,10 +186,22 @@ class MainFrame( gui.MainFrameBase ):
 		if os.path.isfile(filename):
 			if extension.lower() not in imgs:
 				self.curFileName = filename
-				self.m_txtMain.Value = open(filename, 'r').read()
+				contents = open(filename, 'r').read()
+				self.m_txtMain.Value = contents
 			else:
 				self.m_txtMain.Value = 'Not a valid text file'
 
+	def m_btnDeleteClick( self, event ):
+		'''
+		Delete a selected file
+		'''
+		# Grab the filename and make sure it is not an image
+		# If not an image, then load the file and display
+
+		if len(self.curFileName) > 0:
+			os.remove(self.curFileName)
+			self.populateTree(self.book.baseEpubDir, self.book.epubFileName)
+		
 	def populateTree(self, root, rootDisplay):
 		'''
 		Build the EPUB file structure tree
