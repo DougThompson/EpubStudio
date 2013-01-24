@@ -20,9 +20,14 @@ p {
 	display:block;
 	font-size: 0.9em;
 	text-align: justify;
-	line-height: 1.3em;
-	margin-left: 1em;
-	margin-right: 1em;
+	margin-top: 0em;
+	margin-bottom: 0em;
+}
+.norm {
+	text-indent: 2em;
+	display:block;
+	font-size: 0.9em;
+	text-align: justify;
 	margin-top: 0em;
 	margin-bottom: 0em;
 }
@@ -95,6 +100,9 @@ blockquote {
 	text-align: left;
 	font-size: 1.2em;
 	color: navy;
+}
+.smallcaps {
+font-variant:small-caps;
 }
 .title {
 	display: block;

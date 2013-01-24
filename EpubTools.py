@@ -220,6 +220,7 @@ class EpubBook:
         # Ready to start building EPUB file structure, so get a temp dir
         # and build some folders
         self.baseDir = tempfile.mkdtemp()
+        print self.baseDir
         self.baseEpubDir = os.path.join(self.baseDir, defEpubName)
         self.opsDir = os.path.join(self.baseEpubDir, EpubProcessor.getOpsDirName(self.baseEpubDir))
         self.metaDir = os.path.join(self.baseEpubDir, 'META-INF')
@@ -342,6 +343,9 @@ class EpubBook:
         self.imagesDir = os.path.join(self.opsDir, 'images')
         
         self.addAllImageFiles(self.baseDir)
+        
+        # Current hack is to assign the EPUB filename to the title for the save dialog later
+        self.title = self.epubFileName.replace('.epub', '')
 
     def addToLibrary(self):
         '''
@@ -705,7 +709,7 @@ class EpubProcessor:
         Unzip the EPUB file to a temp file
         '''
         filename = os.path.splitext(zipsource)[0].split(os.sep)[-1]
-        baseDir = tempfile.mkdtemp()
+        baseDir = os.path.dirname(zipsource) + '/temp/' #tempfile.mkdtemp()
         zipdest = os.path.join(baseDir, filename)
         os.makedirs(zipdest)
         
